@@ -1,8 +1,9 @@
 # =====================================================================
 # AG-PROJ05 — Delivery System
-# Monorepo: Python Django backend + Native Android app
+# Monorepo: Python Django backend + Flutter mobile app
+# (Android first, iOS later)
 # Patterns are unanchored so they apply in any sub-folder
-# (e.g. backend/, android/).
+# (e.g. backend/, mobile/).
 # =====================================================================
 
 
@@ -21,11 +22,21 @@ firebase-service-account*.json
 google-services.json
 GoogleService-Info.plist
 
-# Android signing
+# Android signing (keystore.properties = AG-PROJ04 style,
+# key.properties = Flutter convention)
 *.jks
 *.keystore
 keystore.properties
+key.properties
 signing.properties
+
+# Apple signing & push keys (iOS)
+*.p8
+*.mobileprovision
+*.cer
+
+# FlutterFire generated config (same policy as google-services.json)
+firebase_options.dart
 
 # Generic key material
 *.pem
@@ -77,6 +88,55 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 .pyre/
+
+
+# =====================================================================
+# FLUTTER / DART
+# (flutter create also adds nested .gitignore files; these are a safety
+#  net. pubspec.lock and .metadata are intentionally TRACKED.)
+# =====================================================================
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+.fvm/
+coverage/
+**/doc/api/
+app.*.symbols
+app.*.map.json
+**/android/app/debug/
+**/android/app/profile/
+
+
+# =====================================================================
+# iOS / XCODE (Flutter ios/ folder) — scoped to avoid matching
+# app source folders such as lib/features/profile/
+# =====================================================================
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/app.flx
+**/ios/Flutter/app.zip
+**/ios/Flutter/flutter_assets/
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/ServiceDefinitions.json
+**/ios/**/profile
+**/.generated/
+DerivedData/
+xcuserdata/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.moved-aside
+**/dgph
 
 
 # =====================================================================
